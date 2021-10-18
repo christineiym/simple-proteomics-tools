@@ -42,7 +42,6 @@ h1 {
     color: white;
     text-align: left;
     column-span: all;
-    width: 100%;
     font-family: Impact;
     padding: 5%;
 }
@@ -54,7 +53,6 @@ h2 {
     color: white;
     text-align: left;
     column-span: all;
-    width: 100%;
     font-family: sans-serif;
     font-size: 16px;
     padding: 1%;
