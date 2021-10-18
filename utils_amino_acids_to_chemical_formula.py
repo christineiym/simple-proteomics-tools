@@ -15,8 +15,8 @@ def read_in_sequences(input_str: str) -> list[str]:
     for sequence in split_sequences:
         current_sequence: str = ""
         for amino_acid in sequence:
-            if amino_acid in constants.VALID_AMINO_ACIDS:
-                current_sequence += amino_acid
+            if amino_acid.upper() in constants.VALID_AMINO_ACIDS:
+                current_sequence += amino_acid.upper()
         valid_sequences.append(current_sequence)
     result: list[str] = [sequence for sequence in valid_sequences if ((sequence is not None) and (sequence != ""))]
 
