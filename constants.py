@@ -52,5 +52,5 @@ SELENIUM: str = "Se"
 FORMULA: str = "Chemical Formula"
 
 # Limit to retain files
-LENGTH_DAY: int = 86400
-LIMIT_DAYS: int = 0.1
+# LENGTH_DAY: int = 86400
+# LIMIT_DAYS: int = 0.1

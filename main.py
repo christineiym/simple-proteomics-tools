@@ -47,20 +47,20 @@ def results_amino_acids_to_chemical_formula(sequence_query):
     list_sequences: list[str] = utils_amino_acids_to_chemical_formula.read_in_sequences(sequence_query)
     result: dict[str, str] = utils_amino_acids_to_chemical_formula.sequences_to_formulas_dict(list_sequences)
 
-    past_csvs = list(os.listdir(os.path.join(os.getcwd(), constants.RESULT_CSV_FOLDER_PATH)))
-    past_csvs_times = [filename_to_time(filename) for filename in past_csvs]
+    # past_csvs = list(os.listdir(os.path.join(os.getcwd(), constants.RESULT_CSV_FOLDER_PATH)))
+    # past_csvs_times = [filename_to_time(filename) for filename in past_csvs]
 
-    # Partially based on https://linuxize.com/post/python-delete-files-and-directories/
-    csv_deletion_threshold: float = time.time() - (constants.LENGTH_DAY * constants.LIMIT_DAYS)
-    i: int = 0
-    while i < len(past_csvs):
-        file_path = os.path.join(constants.RESULT_CSV_FOLDER_PATH, past_csvs[i])
-        if float(past_csvs_times[i]) < csv_deletion_threshold:
-            try:
-                os.remove(file_path)
-            except OSError as e:
-                print("Error: %s : %s" % (file_path, e.strerror))
-        i += 1
+    # # Partially based on https://linuxize.com/post/python-delete-files-and-directories/
+    # csv_deletion_threshold: float = time.time() - (constants.LENGTH_DAY * constants.LIMIT_DAYS)
+    # i: int = 0
+    # while i < len(past_csvs):
+    #     file_path = os.path.join(constants.RESULT_CSV_FOLDER_PATH, past_csvs[i])
+    #     if float(past_csvs_times[i]) < csv_deletion_threshold:
+    #         try:
+    #             os.remove(file_path)
+    #         except OSError as e:
+    #             print("Error: %s : %s" % (file_path, e.strerror))
+    #     i += 1
 
     csv_path: str = utils_amino_acids_to_chemical_formula.generate_result_csv(list_sequences)
 
