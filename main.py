@@ -15,6 +15,8 @@ import utils_amino_acids_to_chemical_formula
 
 
 app = Flask(__name__)
+app.jinja_env.trim_blocks = True
+app.jinja_env.lstrip_blocks = True
 
 # a simple page that serves as the homepage
 # @app.route tells Flask the URL that should trigger a call to our function!

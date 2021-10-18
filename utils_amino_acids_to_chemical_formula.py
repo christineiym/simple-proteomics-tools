@@ -8,20 +8,20 @@ import re
 import constants
 
 
-def convert_amino_acids_to_formulas(input_str: str) -> list[str]:
-    list_sequences: list[str] = read_in_sequences(input_str)
-    list_formulas: list[str] = sequences_to_formulas_dict(list_sequences)
-    return list_formulas
-
-
 def read_in_sequences(input_str: str) -> list[str]:
     """Reads in amino acid sequences (separated by the newline character) and outputs a list of sequences."""
     split_sequences: list[str] = input_str.split("\n")
-    # https://stackoverflow.com/questions/34214139/python-keep-only-letters-in-string/34214187
-    sequences_to_alpha: list[str] = [str(re.sub('[^a-zA-Z]+', '', sequence)) for sequence in split_sequences]
-    result: list[str] = [sequence for sequence in sequences_to_alpha if ((sequence is not None) and (sequence != ""))]
+    valid_sequences: list[str] = []
+    for sequence in split_sequences:
+        current_sequence: str = ""
+        for amino_acid in sequence:
+            if amino_acid in constants.VALID_AMINO_ACIDS:
+                current_sequence += amino_acid
+        valid_sequences.append(current_sequence)
+    result: list[str] = [sequence for sequence in valid_sequences if ((sequence is not None) and (sequence != ""))]
 
     return result
+
 
 def sequence_to_formula(sequence: str) -> str:
     """Converts a given amino acid sequence to its chemical formula."""
@@ -52,12 +52,20 @@ def sequence_to_formula(sequence: str) -> str:
     
     return formula
 
+
 # def sequences_to_formulas_list(sequences: list[str]) -> list[str]:
 #     """Converts a list of amino acid sequences to a list of corresponding chemical formulas."""
 #     result: list[str] = [sequence_to_formula(sequence) for sequence in sequences]
 #     return result
 
+
 def sequences_to_formulas_dict(sequences: list[str]) -> list[str]:
     """Converts a list of amino acid sequences to a dict mapping those sequences to corresponding chemical formulas."""
     result: dict[str, str] = {sequence : sequence_to_formula(sequence) for sequence in sequences}
     return result
+
+
+def convert_amino_acids_to_formulas(input_str: str) -> list[str]:
+    list_sequences: list[str] = read_in_sequences(input_str)
+    list_formulas: list[str] = sequences_to_formulas_dict(list_sequences)
+    return list_formulas

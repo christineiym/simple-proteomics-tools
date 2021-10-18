@@ -23,9 +23,11 @@ AA_TO_FORMULA: dict[str, dict[str, int]] = {
     'W':   {'C': 11, 'H': 10, 'N': 2, 'O': 1},
     'Y':   {'H': 9, 'C': 9, 'O': 2, 'N': 1},
     'U':   {'H': 5, 'C': 3, 'O': 1, 'N': 1, 'Se' : 1},
-    'O':   {'H': 19, 'C': 12, 'O': 2, 'N': 3},
-    'H-':  {'H': 1},
-    '-OH': {'O': 1, 'H': 1},
+    'O':   {'H': 19, 'C': 12, 'O': 2, 'N': 3}
+    # 'H-':  {'H': 1},
+    # '-OH': {'O': 1, 'H': 1},
 }
+
+VALID_AMINO_ACIDS: list[str] = list(AA_TO_FORMULA.keys())
 
 NOT_POSSIBLE: str = "not possible"

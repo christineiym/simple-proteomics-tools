@@ -6,9 +6,31 @@
     <b>Chemical Formula(s):</b>
   </p>
   <br>
-  {% for sequence, formula in result.items() %}
-  <p>{{ formula }}</p>
-  {% endfor %}
+  <table style="color: white; padding: 5%;">
+    <tr>
+      <th>Amino Acid Sequence</th>
+      <th>     </th>
+      <th>Chemical Formula</th>
+    </tr>
+    {% for sequence, formula in result.items() %}
+    <tr>
+      <td>{{ sequence }}</td>
+      <td>     </td>
+      <td>{{ formula }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <br>
+  <p>
+    Copyable chemical formulas:
+  </p>
+  <br>
+  <textarea readonly aria-readonly="true" rows="{{ result|length }}" cols="50">
+    {% for sequence, formula in result.items() %}
+    {{ formula|trim }}
+    {% endfor %}
+  </textarea>
+  <br>
   <button>
     <a href="{{ url_for('home') }}">Search again</a>
   </button>
