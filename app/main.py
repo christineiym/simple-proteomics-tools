@@ -1,7 +1,7 @@
 """Running website as package.
 
-To run the website from source code after installing requirements: 
-1. export FLASK_APP=application
+To run the website from source code after installing requirements (may need to rename main to be __init__.py): 
+1. export FLASK_APP=app
 2. python -m flask run
 3. Click the link!
 """
