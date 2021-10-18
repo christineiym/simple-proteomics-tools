@@ -21,9 +21,14 @@
     {% endfor %}
   </table>
   <br>
-  <p>
+  <textarea readonly aria-readonly="true">
+    {% for sequence, formula in result.items() %}
+    {{formula}}
+    {% endfor %}
+  </textarea>
+  <!-- <p>
     Download Results: <button><a href="{{ url_for('static', filename=(csv_path)) }}" target="new">As CSV</a></button>
-  </p>
+  </p> -->
   <br>
   <br>
   <button>

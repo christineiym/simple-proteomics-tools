@@ -62,9 +62,10 @@ def results_amino_acids_to_chemical_formula(sequence_query):
     #             print("Error: %s : %s" % (file_path, e.strerror))
     #     i += 1
 
-    csv_path: str = utils_amino_acids_to_chemical_formula.generate_result_csv(list_sequences)
+    # csv_path: str = utils_amino_acids_to_chemical_formula.generate_result_csv(list_sequences)
 
-    return render_template('results_amino_acids_to_chemical_formula.html', result=result, csv_path=csv_path)
+    # return render_template('results_amino_acids_to_chemical_formula.html', result=result, csv_path=csv_path)
+    return render_template('results_amino_acids_to_chemical_formula.html', result=result)
 
 @app.route('/about')
 def about():
