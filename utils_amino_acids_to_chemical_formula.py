@@ -5,7 +5,7 @@ __author__ = "christineiym"
 
 
 import re
-from . import constants
+import constants
 
 
 def convert_amino_acids_to_formulas(input_str: str) -> list[str]:
