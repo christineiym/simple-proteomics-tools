@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  {{ super() }}
+  <p>Chemical Formula: {{ result }}</p>
+  <p>Please navigate <a href="{{ url_for('home') }}">here</a> to search again!</p>
+{% endblock %}

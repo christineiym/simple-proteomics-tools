@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  {{ super() }}
+  <p>
+    This homepage is under construction!
+    Please use the navigation bar at the top to explore the website.
+  </p>
+  <form action="{{ url_for('definition') }}" method="post">
+    <label for="search_query">Please enter an abbreviation:</label>
+    <input type="text" id="search_query" name="search_query"><br>
+    <input type="submit">
+  </form>
+{% endblock %}
