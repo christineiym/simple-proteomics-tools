@@ -1,5 +1,9 @@
 """Constants used in the website."""
 
+
+import os
+
+
 AA_TO_FORMULA: dict[str, dict[str, int]] = {
     'A':   {'H': 5, 'C': 3, 'O': 1, 'N': 1},
     'C':   {'H': 5, 'C': 3, 'S': 1, 'O': 1, 'N': 1},
@@ -29,5 +33,24 @@ AA_TO_FORMULA: dict[str, dict[str, int]] = {
 }
 
 VALID_AMINO_ACIDS: list[str] = list(AA_TO_FORMULA.keys())
+NEW_LINE: str = "\n"
 
-NOT_POSSIBLE: str = "not possible"
+RESULT_CSV_FOLDER_PATH: str = os.path.join("static", "results")
+RESULT_CSV_NAME_BEGINNING: str = "result"
+RESULT_CSV_PATH_BEGINNING: str = os.path.join(RESULT_CSV_FOLDER_PATH, RESULT_CSV_NAME_BEGINNING)
+RESULT_CSV_PATH_EXTENSION: str = ".csv"
+RESULT_CSV_PATH_BEGINNING_NO_STATIC: str = os.path.join("results", RESULT_CSV_NAME_BEGINNING)
+
+# CSV Header
+AA_SEQUENCE: str = "Amino Acid Sequence"
+CARBON: str = "C"
+HYDROGEN: str = "H"
+OXYGEN: str = "O"
+NITROGEN: str = "N"
+SULFUR: str = "S"
+SELENIUM: str = "Se"
+FORMULA: str = "Chemical Formula"
+
+# Limit to retain files
+LENGTH_DAY: int = 86400
+LIMIT_DAYS: int = 0.1

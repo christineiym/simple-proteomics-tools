@@ -2,8 +2,19 @@
 
 {% block content %}
   {{ super() }}
+  <p>
+    Welcome to the amino acids to chemical formula tool! Before entering an amino acid sequence, please note the following:
+    <ul>
+      <li>Amino acids must be given as single letters (case insensitive). Inputs like "Arg" are currently not supported.</li>
+      <li>All characters that are not valid amino acids will be ignored.</li>
+      <li>To allow for batch processing of amino acids, new lines currently serve as the demarcation between amino acids; therefore, contiguous sequences spread across multiple lines must be adjusted accordingly for accurate results.</li>
+      <li>This is still very much a work in progress and will see improvements if/as the need arises.</li>
+    </ul>
+    Thank you!
+  </p>
+  <br>
   <form name="form_amino_acids_to_chemical_formula" id="form_amino_acids_to_chemical_formula" method="post">
-    <label for="sequence_query">Please enter amino acid sequence(s) separated by new lines:</label>
+    <label for="sequence_query">Please enter amino acid sequence(s) (separated by new lines):</label>
     <br>
     <textarea id="sequence_query" name="sequence_query" rows="10" cols="50"></textarea>
     <br>

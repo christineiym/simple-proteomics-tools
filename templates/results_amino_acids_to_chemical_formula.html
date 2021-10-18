@@ -22,16 +22,11 @@
   </table>
   <br>
   <p>
-    Copyable chemical formulas:
+    Download Results: <button><a href="{{ url_for('static', filename=(csv_path)) }}" target="new">As CSV</a></button>
   </p>
   <br>
-  <textarea readonly aria-readonly="true" rows="{{ result|length }}" cols="50">
-    {% for sequence, formula in result.items() %}
-    {{ formula|trim }}
-    {% endfor %}
-  </textarea>
   <br>
   <button>
-    <a href="{{ url_for('home') }}">Search again</a>
+    <a href="{{ url_for('amino_acids_to_chemical_formula') }}">Search again</a>
   </button>
 {% endblock %}
