@@ -61,7 +61,7 @@ h2 {
 /* Overall style of link text.
 TODO: verify accuracy of information on links */
 li p {
-    color: black;
+    color: white;
     text-align: left;
     border: medium solid white;
     border-radius: 5px;
