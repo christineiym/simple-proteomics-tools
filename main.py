@@ -11,7 +11,7 @@ import os
 from flask import Flask, request, redirect, url_for, render_template
 from flask import render_template
 from flask import request
-from . import utils_amino_acids_to_chemical_formula
+import utils_amino_acids_to_chemical_formula
 
 
 app = Flask(__name__)
