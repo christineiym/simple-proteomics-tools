@@ -6,9 +6,10 @@
     <b>Chemical Formula(s):</b>
   </p>
   <br>
-  <!-- {% for formula in result %}
+  {% for sequence, formula in result.items() %}
   <p>{{ formula }}</p>
-  {% endfor %} -->
-  <p>{{result}}</p>
-  <button href="{{ url_for('home') }}">Search again</button>
+  {% endfor %}
+  <button>
+    <a href="{{ url_for('home') }}">Search again</a>
+  </button>
 {% endblock %}

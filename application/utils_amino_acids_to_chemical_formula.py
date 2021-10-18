@@ -10,7 +10,7 @@ from . import constants
 
 def convert_amino_acids_to_formulas(input_str: str) -> list[str]:
     list_sequences: list[str] = read_in_sequences(input_str)
-    list_formulas: list[str] = sequences_to_formulas(list_sequences)
+    list_formulas: list[str] = sequences_to_formulas_dict(list_sequences)
     return list_formulas
 
 
@@ -52,7 +52,12 @@ def sequence_to_formula(sequence: str) -> str:
     
     return formula
 
-def sequences_to_formulas(sequences: list[str]) -> list[str]:
-    """Converts a list of amino acid sequences to a list of corresponding chemical formulas."""
-    result: list[str] = [sequence_to_formula(sequence) for sequence in sequences]
+# def sequences_to_formulas_list(sequences: list[str]) -> list[str]:
+#     """Converts a list of amino acid sequences to a list of corresponding chemical formulas."""
+#     result: list[str] = [sequence_to_formula(sequence) for sequence in sequences]
+#     return result
+
+def sequences_to_formulas_dict(sequences: list[str]) -> list[str]:
+    """Converts a list of amino acid sequences to a dict mapping those sequences to corresponding chemical formulas."""
+    result: dict[str, str] = {sequence : sequence_to_formula(sequence) for sequence in sequences}
     return result

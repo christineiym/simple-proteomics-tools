@@ -48,16 +48,15 @@ def create_app(test_config=None):
         """Input form for converting amino acids to chemical formula."""
         if request.method == 'POST':
             all_form_data: dict[str, str] = dict(request.form)
-            input_sequence_string: str = all_form_data['sequence_query']
-            result: list[str] = utils_amino_acids_to_chemical_formula.convert_amino_acids_to_formulas(input_sequence_string)
-            print(result)
-            return redirect(url_for('results_amino_acids_to_chemical_formula', url_placeholder="results", result=result))
+            sequence_query: str = all_form_data['sequence_query']
+            return redirect(url_for('results_amino_acids_to_chemical_formula', sequence_query=sequence_query))
         else:
             return render_template('amino_acids_to_chemical_formula.html')
 
-    @app.route('/amino_acids_to_chemical_formula/<url_placeholder>/<result>')  
-    def results_amino_acids_to_chemical_formula(url_placeholder, result):
+    @app.route('/amino_acids_to_chemical_formula/<sequence_query>')  
+    def results_amino_acids_to_chemical_formula(sequence_query):
         """Utilize the form data to consult the dictionary and return an appropriate result."""
+        result: list[str] = utils_amino_acids_to_chemical_formula.convert_amino_acids_to_formulas(sequence_query)
         return render_template('results_amino_acids_to_chemical_formula.html', result=result)
     
     @app.route('/about')
