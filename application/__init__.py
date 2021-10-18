@@ -1,27 +1,24 @@
 """Running website as package.
 
-To run the website after installing requirements: 
-1. export FLASK_APP=draft_product.unc_abbreviations
-  - Alternatively, do the following: 
-    1) cd draft_product (cd stands for change directory, so this navigates you to the appropriate folder)
-    2) export FLASK_APP=unc_abbreviations
+To run the website from source code after installing requirements: 
+1. export FLASK_APP=application
 2. python -m flask run
 3. Click the link!
 """
 
 
 import os
-from flask import Flask
+from flask import Flask, request, redirect, url_for, render_template
 from flask import render_template
 from flask import request
-from . import constants
+from . import utils_amino_acids_to_chemical_formula
 
 
 def create_app(test_config=None):
     """Create and configure the app."""
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
-        SECRET_KEY='dev',
+        SECRET_KEY='dev'
         # A local database shouldn't be needed, but just in case...
         # DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
     )
@@ -41,20 +38,31 @@ def create_app(test_config=None):
 
     # a simple page that serves as the homepage
     # @app.route tells Flask the URL that should trigger a call to our function!
-    @app.route('/', methods=['GET', 'POST'])
+    @app.route('/')
     def home():
         """Landing page of the website."""
         return render_template('home.html')
     
-    @app.route('/definition', methods=['GET', 'POST'])  
-    def definition():
+    @app.route('/amino_acids_to_chemical_formula', methods=['GET', 'POST'])
+    def amino_acids_to_chemical_formula():
+        """Input form for converting amino acids to chemical formula."""
+        if request.method == 'POST':
+            all_form_data: dict[str, str] = dict(request.form)
+            input_sequence_string: str = all_form_data['sequence_query']
+            result: list[str] = utils_amino_acids_to_chemical_formula.convert_amino_acids_to_formulas(input_sequence_string)
+            print(result)
+            return redirect(url_for('results_amino_acids_to_chemical_formula', url_placeholder="results", result=result))
+        else:
+            return render_template('amino_acids_to_chemical_formula.html')
+
+    @app.route('/amino_acids_to_chemical_formula/<url_placeholder>/<result>')  
+    def results_amino_acids_to_chemical_formula(url_placeholder, result):
         """Utilize the form data to consult the dictionary and return an appropriate result."""
-        # Get inputted data.
-        # TODO: what is the original type of request.form['search_query']?
-        result: str = constants.NO_RESULT_FOUND
-        search_query = str(request.form['search_query'])
-        if search_query in constants.WORD_BANK:
-            result = constants.WORD_BANK[search_query]
-        return render_template('definition.html',result=result)
+        return render_template('results_amino_acids_to_chemical_formula.html', result=result)
+    
+    @app.route('/about')
+    def about():
+        """About page of the website."""
+        return render_template('about.html')
 
     return app

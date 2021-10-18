@@ -103,6 +103,15 @@ body {
     column-span: all;
 }
 
+/* Style of buttons. */
+button {
+    background-color: bisque;
+    color: white;
+    font-family: sans-serif;
+    font-size: 16px;
+    column-span: all
+}
+
 /** Topnav code is from https://www.w3schools.com/howto/howto_js_topnav_responsive.asp **/
 /* Add a black background color to the top navigation */
 .topnav {

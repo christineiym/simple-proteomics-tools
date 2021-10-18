@@ -2,6 +2,13 @@
 
 {% block content %}
   {{ super() }}
-  <p>Chemical Formula: {{ result }}</p>
-  <p>Please navigate <a href="{{ url_for('home') }}">here</a> to search again!</p>
+  <p>
+    <b>Chemical Formula(s):</b>
+  </p>
+  <br>
+  <!-- {% for formula in result %}
+  <p>{{ formula }}</p>
+  {% endfor %} -->
+  <p>{{result}}</p>
+  <button href="{{ url_for('home') }}">Search again</button>
 {% endblock %}
