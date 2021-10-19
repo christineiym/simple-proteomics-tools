@@ -12,7 +12,7 @@ import re
 from flask import Flask, request, redirect, url_for, render_template
 from flask import render_template
 from flask import request
-from whitenoise import WhiteNoise
+# from whitenoise import WhiteNoise
 import utils_amino_acids_to_chemical_formula
 import constants
 import time
@@ -21,7 +21,7 @@ import time
 app = Flask(__name__)
 app.jinja_env.trim_blocks = True
 app.jinja_env.lstrip_blocks = True
-app.wsgi_app = WhiteNoise(app.wsgi_app, root='static/')
+# app.wsgi_app = WhiteNoise(app.wsgi_app, root='static/')
 app.config.from_mapping(
     TEMP_FOLDER=constants.RESULT_CSV_FOLDER_PATH
 )
