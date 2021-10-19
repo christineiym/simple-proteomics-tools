@@ -30,14 +30,14 @@ def sequence_to_atom_totals(sequence: str) -> dict[str, int]:
             else:
                 atom_totals.update({atom : chemical_composition[atom]})
     
-    oxygens_to_remove: int = len(sequence) - 1
-    hydrogens_to_remove: int = 2 * oxygens_to_remove
+    # oxygens_to_remove: int = len(sequence) - 1
+    # hydrogens_to_remove: int = 2 * oxygens_to_remove
 
-    try:
-        atom_totals.update({'O' : (atom_totals['O'] - oxygens_to_remove)})
-        atom_totals.update({'H' : (atom_totals['H'] - hydrogens_to_remove)})
-    except:
-        return {}
+    # try:
+    #     atom_totals.update({'O' : (atom_totals['O'] - oxygens_to_remove)})
+    #     atom_totals.update({'H' : (atom_totals['H'] - hydrogens_to_remove)})
+    # except:
+    #     return {}
     
     return atom_totals
 
