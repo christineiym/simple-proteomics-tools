@@ -8,6 +8,7 @@ import constants
 import csv
 from typing import Union
 import time
+import operator
 
 
 def read_in_sequences(input_str: str) -> list[str]:
@@ -33,6 +34,9 @@ def sequence_to_atom_totals(sequence: str) -> dict[str, int]:
     # Add H- and -OH
     atom_totals.update({'O' : (atom_totals['O'] + 1)})
     atom_totals.update({'H' : (atom_totals['H'] + 2)})
+
+    # Sort alphabetically
+    atom_totals = dict(sorted(atom_totals.items(), key=operator.itemgetter(0)))
     
     return atom_totals
 
@@ -41,7 +45,7 @@ def atom_totals_to_str(raw_atom_totals: dict[str, int]) -> dict[str, str]:
     """Format totals as strings."""
     result: dict[str, str] = {}
 
-    for atom in raw_atom_totals:
+    for atom in list(raw_atom_totals.keys()):
         result.update({atom : str(raw_atom_totals[atom])})
     
     return result
