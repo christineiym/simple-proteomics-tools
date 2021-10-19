@@ -21,7 +21,8 @@
     {% endfor %}
   </table>
   <br>
-  <textarea readonly aria-readonly="true">
+  <p>Copyable formulas:</p>
+  <textarea rows="{{ result | length }}" cols="50">
     {% for sequence, formula in result.items() %}
     {{formula}}
     {% endfor %}
