@@ -57,7 +57,8 @@ def atom_totals_to_formula(atom_totals: dict[str, str]) -> str:
 
     for atom in atom_totals:
         formula += atom
-        formula += str(atom_totals[atom])
+        if atom_totals[atom] != "1":
+            formula += str(atom_totals[atom])
     
     return formula
 
