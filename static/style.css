@@ -110,6 +110,21 @@ button {
     column-span: all
 }
 
+/* Style of table. From https://stackoverflow.com/questions/17012421/auto-number-table-rows */
+table {
+    counter-reset: rowNumber;
+}
+
+table tr:not(:first-child) {
+    counter-increment: rowNumber;
+}
+
+table tr td:first-child::before {
+    content: counter(rowNumber)") ";
+    min-width: 1em;
+    margin-right: 0.5em;
+}
+
 /** Topnav code is from https://www.w3schools.com/howto/howto_js_topnav_responsive.asp **/
 /* Add a black background color to the top navigation */
 .topnav {
