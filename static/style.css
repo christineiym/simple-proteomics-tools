@@ -110,9 +110,15 @@ button {
     column-span: all
 }
 
-/* Style of table. From https://stackoverflow.com/questions/17012421/auto-number-table-rows */
+/* Style of table. From https://stackoverflow.com/questions/17012421/auto-number-table-rows 
+and https://www.w3docs.com/snippets/css/how-to-wrap-the-content-of-a-table-cell.html */
 table {
     counter-reset: rowNumber;
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 95vw;
+    color: white;
+    padding: 5%
 }
 
 table tr:not(:first-child) {
@@ -123,6 +129,12 @@ table tr td:first-child::before {
     content: counter(rowNumber)") ";
     min-width: 1em;
     margin-right: 0.5em;
+}
+
+table td {
+    word-wrap: break-word;
+    white-space: normal;
+    padding: 5px
 }
 
 /** Topnav code is from https://www.w3schools.com/howto/howto_js_topnav_responsive.asp **/

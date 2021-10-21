@@ -11,9 +11,16 @@ import time
 import operator
 
 
-def read_in_sequences(input_str: str) -> list[str]:
-    """Read in amino acid sequences (separated by the newline character) and output a list of valid sequences."""
-    split_sequences: list[str] = input_str.split("\n")
+def read_in_sequences(delimiter: str, input_str: str) -> list[str]:
+    """Read in amino acid sequences (separated by the given delimiter) and output a list of valid sequences."""
+    split_sequences: list[str]
+    if delimiter == "na":
+        split_sequences = [input_str]
+    else:
+        if delimiter == "n":
+            delimiter = "\n"
+        split_sequences: list[str] = input_str.split(delimiter)
+    
     result: list[str] = [sequence for sequence in split_sequences if ((sequence is not None) and (sequence != ""))]
 
     return result

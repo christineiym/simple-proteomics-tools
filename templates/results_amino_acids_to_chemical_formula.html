@@ -6,17 +6,17 @@
     <b>Chemical Formula(s):</b>
   </p>
   <br>
-  <table style="color: white; padding: 5%;">
+  <table>
     <tr>
+      <th style="width: 10%"></th>
       <th>Amino Acid Sequence</th>
-      <th>     </th>
       <th>Chemical Formula</th>
     </tr>
     {% for sequence, formula in result.items() %}
     <tr>
-      <td>{{ sequence }}</td>
-      <td>     </td>
-      <td>{{ formula }}</td>
+      <td style="width: 10%; text-align: left;"></td>
+      <td style="text-align: left">{{ sequence }}</td>
+      <td style="text-align: center">{{ formula }}</td>
     </tr>
     {% endfor %}
   </table>

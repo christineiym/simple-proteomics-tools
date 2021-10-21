@@ -38,15 +38,18 @@ def amino_acids_to_chemical_formula():
     """Input form for converting amino acids to chemical formula."""
     if request.method == 'POST':
         all_form_data: dict[str, str] = dict(request.form)
-        sequence_query: str = validate_input(all_form_data['sequence_query'])
-        return redirect(url_for('results_amino_acids_to_chemical_formula', sequence_query=sequence_query))
+        delimiter: str = str(all_form_data['delimiter'])
+
+        sequence_query: str = validate_input(delimiter, all_form_data['sequence_query'])
+        
+        return redirect(url_for('results_amino_acids_to_chemical_formula', delimiter=delimiter, sequence_query=sequence_query))
     else:
         return render_template('amino_acids_to_chemical_formula.html')
 
-@app.route('/amino_acids_to_chemical_formula/<sequence_query>')  
-def results_amino_acids_to_chemical_formula(sequence_query):
+@app.route('/amino_acids_to_chemical_formula/<delimiter>/<sequence_query>')  
+def results_amino_acids_to_chemical_formula(delimiter, sequence_query):
     """Utilize the form data to consult the dictionary and return an appropriate result."""
-    list_sequences: list[str] = utils_amino_acids_to_chemical_formula.read_in_sequences(sequence_query)
+    list_sequences: list[str] = utils_amino_acids_to_chemical_formula.read_in_sequences(delimiter, sequence_query)
     result: dict[str, str] = utils_amino_acids_to_chemical_formula.sequences_to_formulas_dict(list_sequences)
 
     # past_csvs = list(os.listdir(os.path.join(os.getcwd(), constants.RESULT_CSV_FOLDER_PATH)))
@@ -80,10 +83,16 @@ def filename_to_time(filename: str) -> str:
     trim_end: str = re.sub(constants.RESULT_CSV_PATH_EXTENSION, "", trim_prefix)
     return trim_end
 
-def validate_input(input_str) -> str:
+def validate_input(delimiter: str, input_str: str) -> str:
     validated_input: str = ""
+
+    if delimiter == "na":
+        delimiter = ""
+    elif delimiter == "n":
+        delimiter = constants.NEW_LINE
+
     for character in input_str:
-        if character == constants.NEW_LINE:
+        if character == delimiter:
             validated_input += character
         elif (character.upper() in constants.VALID_AMINO_ACIDS):
             validated_input += character.upper()
