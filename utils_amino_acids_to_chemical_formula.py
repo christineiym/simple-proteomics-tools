@@ -79,10 +79,10 @@ def sequences_to_formulas_dict(sequences: list[str]) -> dict[str, str]:
 def generate_result_csv(sequences: list[str]) -> str:
     """Generate a detailed result csv from a list of sequences."""
     current_time = time.time()
-    csv_path: str = constants.RESULT_CSV_PATH_BEGINNING + str(current_time) + constants.RESULT_CSV_PATH_EXTENSION
-    csv_path_no_static: str = constants.RESULT_CSV_PATH_BEGINNING_NO_STATIC + str(current_time) + constants.RESULT_CSV_PATH_EXTENSION
+    csv_path: str = constants.RESULT_CSV_NAME_BEGINNING + str(current_time) + constants.RESULT_CSV_PATH_EXTENSION
+    csv_path_with_static: str = constants.RESULT_CSV_PATH_BEGINNING + str(current_time) + constants.RESULT_CSV_PATH_EXTENSION
 
-    with open(csv_path, "w", newline='', encoding="utf-8") as output_file:
+    with open(csv_path_with_static, "w", newline='', encoding="utf-8") as output_file:
         header: list[str] = [
             constants.AA_SEQUENCE,
             constants.FORMULA,
@@ -110,4 +110,5 @@ def generate_result_csv(sequences: list[str]) -> str:
             row.update({constants.FORMULA : formula})
             writer.writerow(row)
     
-    return csv_path_no_static
+    print(csv_path)
+    return csv_path

@@ -1,7 +1,7 @@
 """Running website as package.
 
 To run the website from source code after installing requirements (may need to rename main to be __init__.py): 
-1. export FLASK_APP=app
+1. export FLASK_APP=main
 2. python -m flask run
 3. Click the link!
 """
@@ -12,7 +12,7 @@ import re
 from flask import Flask, request, redirect, url_for, render_template
 from flask import render_template
 from flask import request
-# from whitenoise import WhiteNoise
+from whitenoise import WhiteNoise
 import utils_amino_acids_to_chemical_formula
 import constants
 import time
@@ -21,10 +21,10 @@ import time
 app = Flask(__name__)
 app.jinja_env.trim_blocks = True
 app.jinja_env.lstrip_blocks = True
-# app.wsgi_app = WhiteNoise(app.wsgi_app, root='static/')
-app.config.from_mapping(
-    TEMP_FOLDER=constants.RESULT_CSV_FOLDER_PATH
-)
+app.wsgi_app = WhiteNoise(app.wsgi_app, root='static/')
+# app.config.from_mapping(
+#     TEMP_FOLDER=constants.RESULT_CSV_FOLDER_PATH
+# )
 
 # a simple page that serves as the homepage
 # @app.route tells Flask the URL that should trigger a call to our function!
@@ -67,10 +67,10 @@ def results_amino_acids_to_chemical_formula(delimiter, sequence_query):
     #             print("Error: %s : %s" % (file_path, e.strerror))
     #     i += 1
 
-    # csv_path: str = utils_amino_acids_to_chemical_formula.generate_result_csv(list_sequences)
+    csv_path: str = utils_amino_acids_to_chemical_formula.generate_result_csv(list_sequences)
 
-    # return render_template('results_amino_acids_to_chemical_formula.html', result=result, csv_path=csv_path)
-    return render_template('results_amino_acids_to_chemical_formula.html', result=result)
+    return render_template('results_amino_acids_to_chemical_formula.html', result=result, csv_path=csv_path)
+    # return render_template('results_amino_acids_to_chemical_formula.html', result=result)
 
 @app.route('/about')
 def about():
